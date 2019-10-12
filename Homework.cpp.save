@@ -40,7 +40,7 @@ int main()
 
     moveMen (575, 338, 0, 0, 1, 1, 100, TX_GREEN, 650, 338, -1, 0, 1, 1, 35, 1, TX_LIGHTCYAN, 635, 400, 0, 0, 100, TX_PINK, false, TX_BLACK);
 
-    hi (10);
+    hi ();
 
     return 0;
 
@@ -48,7 +48,7 @@ int main()
 
 //----------------------------------------------------------------------------
 
-void drawMan (int x, int y, int lhx, int lhy, int rhx, int rhy, double scale, COLORREF color)
+void drawMan (int x, int y, int hx, int hy, double scale, COLORREF color)
 {
 
     txSetColor (color, scale);
@@ -56,8 +56,8 @@ void drawMan (int x, int y, int lhx, int lhy, int rhx, int rhy, double scale, CO
 
     txLine (x, y, x, y + scale * 40);
 
-    txLine (x, y + scale * 5, x + scale * 7 + rhy, y + scale * 25 + rhx);
-    txLine (x, y + scale * 5, x - scale * 7 + lhy, y + scale * 25 + lhx);
+    txLine (x, y + scale * 5, x + scale * 7, y + scale * 25);
+    txLine (x, y + scale * 5, x - scale * 7 + hy, y + scale * 25 + hx);
 
     txLine (x, y + scale * 40, x + scale * 10, y + scale * 40 + scale * 20);
     txLine (x, y + scale * 40, x - scale * 10, y + scale * 40 + scale * 20);
@@ -81,8 +81,8 @@ void moveMen (int x00, int y00, double vx0, double vy0,
 
 {
 
-    drawMan (x00, y00, 0, 0, 0, 0, scale00, color0);
-    drawMan (x01, y01, 0, 0, 0, 0, scale01, color1);
+    drawMan (x00, y00, 0, 0, scale00, color0);
+    drawMan (x01, y01, 0, 0, scale01, color1);
 
     double vScale0 = (scale10 - scale00) / time0;
     double vScale1 = (scale11 - scale01) / time1;
@@ -122,8 +122,8 @@ void moveMen (int x00, int y00, double vx0, double vy0,
 
     {
 
-        drawMan (x10, y10, 0, 0, 0, 0, scale0, color0);
-        drawMan (x11, y11, 0, 0, 0, 0, scale1, color1);
+        drawMan (x10, y10, 0, 0, scale0, color0);
+        drawMan (x11, y11, 0, 0, scale1, color1);
         drawHouse (x12, y12, color2, bkcolor);
 
         txSleep (delay);
@@ -147,7 +147,7 @@ void moveMen (int x00, int y00, double vx0, double vy0,
             }
 
             scale0 = scale00 + vScale0 * t;
-            drawMan (x10, y10, 0, 0, 0, 0, scale0, color0);
+            drawMan (x10, y10, 0, 0, scale0, color0);
 
         }
 
@@ -167,7 +167,7 @@ void moveMen (int x00, int y00, double vx0, double vy0,
             }
 
             scale1 = scale01 + vScale1 * t;
-            drawMan (x11, y11, 0, 0, 0, 0, scale1, color1);
+            drawMan (x11, y11, 0, 0, scale1, color1);
 
         }
 
@@ -185,8 +185,8 @@ void moveMen (int x00, int y00, double vx0, double vy0,
 
     }
 
-    drawMan (x10, y10, 0, 0, 0, 0, scale10, color0);
-    drawMan (x11, y11, 0, 0, 0, 0, scale11, color1);
+    drawMan (x10, y10, 0, 0, scale10, color0);
+    drawMan (x11, y11, 0, 0, scale11, color1);
     drawHouse (x12, y12, color2, bkcolor);
 
 }
@@ -238,18 +238,16 @@ void hi (int delay)
     int hx = 0;
     int hy = 0;
 
-    for (int i = 0; i <= 20; i++)
+    for (int i = 0; i <= 20, i++)
 
     {
 
-        Clear (TX_BLACK);
+        Clear ();
 
-        drawBackground (TX_WHITE);
-        drawMan (575, 338, 0, 0, -(i * 1.3), (i * 0.7), 1, TX_GREEN);
-        drawMan (615, 338, -(i * 1.3), -(i * 0.7), 0, 0, 1, TX_LIGHTCYAN);
+        drawBackground ();
+        drawMan (575, 338, 0, 0, 1, TX_GREEN);
+        drawMan (615, 338, 0, i, 1, TX_LIGHTCYAN);
         drawHouse (635, 400, TX_PINK, TX_BLACK);
-
-        txSleep (delay);
 
     }
 
