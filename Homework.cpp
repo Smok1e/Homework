@@ -30,17 +30,19 @@ int main()
 
     txCreateWindow (800, 600);
 
-    moveMen (400, 338, 1, 0, 1, 1, 375, TX_GREEN, 1000, 338, 0, 0, 1, 1, 370, 1, TX_LIGHTCYAN, 1000, 300, 0, 0, 370, TX_PINK, true, TX_BLACK);
+    moveMen (400, 338, 1, 0, 1, 1, 375, TX_GREEN, 1000, 338, 0, 0, 1, 1, 370, 1, TX_LIGHTCYAN, 1000, 300, 0, 0, 370, TX_WHITE, true, TX_BLACK);
 
     txSleep (500);
 
-    moveMen (775, 338, -1, 0, 1, 1, 200, TX_GREEN, 850, 338, -1, 0, 1, 1, 200, 1, TX_LIGHTCYAN, 835, 400, -1, 0, 200, TX_PINK, false, TX_BLACK);
+    moveMen (775, 338, -1, 0, 1, 1, 200, TX_GREEN, 850, 338, -1, 0, 1, 1, 200, 1, TX_LIGHTCYAN, 835, 400, -1, 0, 200, TX_WHITE, false, TX_BLACK);
 
     txSleep (500);
 
-    moveMen (575, 338, 0, 0, 1, 1, 100, TX_GREEN, 650, 338, -1, 0, 1, 1, 35, 1, TX_LIGHTCYAN, 635, 400, 0, 0, 100, TX_PINK, false, TX_BLACK);
+    moveMen (575, 338, 0, 0, 1, 1, 100, TX_GREEN, 650, 338, -1, 0, 1, 1, 35, 1, TX_LIGHTCYAN, 635, 400, 0, 0, 100, TX_WHITE, false, TX_BLACK);
 
     hi (10);
+
+    moveMen (575, 338, -1, 0, 1, 1, 650, TX_GREEN, 615, 338, -1, 0, 1, 1, 650, 1, TX_LIGHTCYAN, 635, 400, 0, 0, 100, TX_WHITE, true, TX_BLACK);
 
     return 0;
 
@@ -162,7 +164,7 @@ void moveMen (int x00, int y00, double vx0, double vy0,
 
             {
 
-                y11 = y11 + t % 10 - 5;
+                y11 = y11 - t % 10 + 5;
 
             }
 
@@ -191,6 +193,8 @@ void moveMen (int x00, int y00, double vx0, double vy0,
 
 }
 
+//----------------------------------------------------------------------------
+
 void Clear (COLORREF color)
 
 {
@@ -202,6 +206,8 @@ void Clear (COLORREF color)
 
 }
 
+//----------------------------------------------------------------------------
+
 void drawBackground (COLORREF color)
 
 {
@@ -211,6 +217,8 @@ void drawBackground (COLORREF color)
     txLine (1, 400, 800, 400);
 
 }
+
+//----------------------------------------------------------------------------
 
 void drawHouse (int x, int y, COLORREF color, COLORREF bkcolor)
 
@@ -231,6 +239,8 @@ void drawHouse (int x, int y, COLORREF color, COLORREF bkcolor)
 
 }
 
+//----------------------------------------------------------------------------
+
 void hi (int delay)
 
 {
@@ -247,11 +257,29 @@ void hi (int delay)
         drawBackground (TX_WHITE);
         drawMan (575, 338, 0, 0, -(i * 1.3), (i * 0.7), 1, TX_GREEN);
         drawMan (615, 338, -(i * 1.3), -(i * 0.7), 0, 0, 1, TX_LIGHTCYAN);
-        drawHouse (635, 400, TX_PINK, TX_BLACK);
+        drawHouse (635, 400, TX_WHITE, TX_BLACK);
 
         txSleep (delay);
 
     }
 
+    txSleep (300);
+
+    for (int i = 20; i >= 0; i--)
+
+    {
+
+        Clear (TX_BLACK);
+
+        drawBackground (TX_WHITE);
+        drawMan (575, 338, 0, 0, -(i * 1.3), (i * 0.7), 1, TX_GREEN);
+        drawMan (615, 338, -(i * 1.3), -(i * 0.7), 0, 0, 1, TX_LIGHTCYAN);
+        drawHouse (635, 400, TX_WHITE, TX_BLACK);
+
+        txSleep (delay);
+
+    }
+
+
 }
-//----------------------------------------------------------------------------
+
