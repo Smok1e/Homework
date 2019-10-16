@@ -326,7 +326,7 @@ void Clear (COLORREF color)
     txSetColor (color);
     txSetFillColor (color);
 
-    txRectangle (1, 1, 800, 600);
+    txRectangle (0, 0, 800, 600);
 
 }
 
