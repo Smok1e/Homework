@@ -2,18 +2,7 @@
 
 //----------------------------------------------------------------------------
 
-void drawMan (int x, int y, int hx, int hy, double scale, COLORREF color);
-
-void moveMen (int x00, int y00, double vx0, double vy0,
-              double scale00, double scale10,
-              int time0, COLORREF color0,
-              int x01, int y01, double vx1, double vy1,
-              double scale01, double scale11,
-              int time1, int delay,
-              COLORREF color1,
-              int x2, int y2, double vx2, double vy2,
-              int time2, COLORREF color2,
-              bool wobble, COLORREF bkcolor);
+void drawMan (int x, int y, int lhx, int lhy, int rhx, int rhy, double scale, COLORREF color);
 
 void Clear (COLORREF color);
 
@@ -21,7 +10,30 @@ void drawBackground (COLORREF color);
 
 void drawHouse (int x, int y, COLORREF color, COLORREF bkcolor);
 
-void hi (int delay);
+void drawHouse (int x, int y, int scale, COLORREF color, COLORREF bkcolor);
+
+int Max (int num1, int num2);
+
+void drawUfo (int x, int y);
+
+void Scene1 ();
+
+void Scene2 ();
+
+void Scene3 ();
+
+void Scene4 ();
+
+void Scene5 ();
+
+void Scene6 ();
+
+void Scene7 ();
+
+void Scene8 ();
+
+void Scene9 ();
+
 
 //----------------------------------------------------------------------------
 
@@ -30,21 +42,258 @@ int main()
 
     txCreateWindow (800, 600);
 
-    moveMen (400, 338, 1, 0, 1, 1, 375, TX_GREEN, 1000, 338, 0, 0, 1, 1, 370, 1, TX_LIGHTCYAN, 1000, 300, 0, 0, 370, TX_WHITE, true, TX_BLACK);
+    Scene1 ();
 
     txSleep (500);
 
-    moveMen (775, 338, -1, 0, 1, 1, 200, TX_GREEN, 850, 338, -1, 0, 1, 1, 200, 1, TX_LIGHTCYAN, 835, 400, -1, 0, 200, TX_WHITE, false, TX_BLACK);
+    Scene2 ();
 
     txSleep (500);
 
-    moveMen (575, 338, 0, 0, 1, 1, 100, TX_GREEN, 650, 338, -1, 0, 1, 1, 35, 1, TX_LIGHTCYAN, 635, 400, 0, 0, 100, TX_WHITE, false, TX_BLACK);
+    Scene3 ();
 
-    hi (10);
+    txSleep (300);
 
-    moveMen (575, 338, -1, 0, 1, 1, 650, TX_GREEN, 615, 338, -1, 0, 1, 1, 650, 1, TX_LIGHTCYAN, 635, 400, 0, 0, 100, TX_WHITE, true, TX_BLACK);
+    Scene4 ();
+
+    txSleep (500);
+
+    Scene5 ();
+
+    txSleep (500);
+
+    Scene6 ();
+
+    Scene7 ();
+
+    Scene8 ();
+
+    Scene9 ();
 
     return 0;
+
+}
+
+//-----------------------------------------------------------------------------
+
+void Scene1 ()
+
+{
+
+    for (int t = 0; t <= 100; t++)
+
+    {
+
+        drawBackground (TX_WHITE);
+
+        drawMan (400 + 3.75 * t, 338 + t % 10 - 5, 0, 0, 0, 0, 1, TX_GREEN);
+
+        txSleep (10);
+
+    }
+
+}
+
+//-----------------------------------------------------------------------------
+
+
+void Scene2 ()
+
+{
+
+    for (int t = 0; t <= 100; t++)
+
+    {
+
+        drawBackground (TX_WHITE);
+
+        drawMan   (775 + -2 * t, 338, 0, 0, 0, 0, 1, TX_GREEN);
+        drawMan   (850 + -2 * t, 338, 0, 0, 0, 0, 1, TX_LIGHTCYAN);
+        drawHouse (835 + -2 * t, 400, TX_WHITE, TX_BLACK);
+
+        txSleep (10);
+
+    }
+
+}
+
+//-----------------------------------------------------------------------------
+
+
+void Scene3 ()
+
+{
+
+    for (int t = 0; t <= 100; t++)
+
+    {
+
+        drawBackground (TX_WHITE);
+
+        drawMan   (575 +     0 * t, 338, 0, 0, 0, 0, 1, TX_GREEN);
+        drawMan   (650 + -0.35 * t, 338, 0, 0, 0, 0, 1, TX_LIGHTCYAN);
+        drawHouse (635 +     0 * t, 400, TX_WHITE, TX_BLACK);
+
+        txSleep (0);
+
+    }
+
+}
+
+//-----------------------------------------------------------------------------
+
+void Scene4 ()
+
+{
+
+    for (int t = 0; t <= 20; t++)
+
+    {
+
+        drawBackground (TX_WHITE);
+        drawMan (575, 338,    0 * t,    0 * t, -1.3 * t, 0.7 * t, 1, TX_GREEN);
+        drawMan (615, 338, -1.3 * t, -0.7 * t,    0 * t,   0 * t, 1, TX_LIGHTCYAN);
+
+        drawHouse (635, 400, TX_WHITE, TX_BLACK);
+
+        txSleep (30);
+
+    }
+
+    txSleep (300);
+
+    for (int t = 20; t >= 0; t--)
+
+    {
+
+        Clear (TX_BLACK);
+
+        drawBackground (TX_WHITE);
+
+        drawMan (575, 338,    0 * t,    0 * t, -1.3 * t, 0.7 * t, 1, TX_GREEN);
+        drawMan (615, 338, -1.3 * t, -0.7 * t,    0 * t,   0 * t, 1, TX_LIGHTCYAN);
+
+        drawHouse (635, 400, TX_WHITE, TX_BLACK);
+
+        txSleep (30);
+
+
+    }
+
+}
+
+//-----------------------------------------------------------------------------
+
+void Scene5 ()
+
+{
+
+    for (int t = 0; t <= 100; t++)
+
+    {
+
+        drawBackground (TX_WHITE);
+
+        drawMan   (575 + -6.5 * t, 338 + t % 10 - 5, 0, 0, 0, 0, 1, TX_GREEN);
+        drawMan   (615 + -6.5 * t, 338 - t % 10 + 5, 0, 0, 0, 0, 1, TX_LIGHTCYAN);
+        drawHouse (635, 400, TX_WHITE, TX_BLACK);
+
+        txSleep (10);
+
+    }
+
+}
+
+
+//-----------------------------------------------------------------------------
+
+void Scene6 ()
+
+{
+
+    for (int t = 0; t <= 300; t++)
+
+    {
+
+        drawBackground (TX_WHITE);
+
+        drawHouse (-500 + 10 * t, 400, 20, TX_WHITE, TX_BLACK);
+        drawHouse (-1300 + 10 * t, 400, 100, TX_WHITE, TX_BLACK);
+        drawHouse (-2000 + 10 * t, 400, 50, TX_WHITE, TX_BLACK);
+
+        drawMan (375, 338 + t % 10 - 5, 0, 0, 0, 0, 1, TX_GREEN);
+        drawMan (425, 338 - t % 10 + 5, 0, 0, 0, 0, 1, TX_LIGHTCYAN);
+
+        txSleep (10);
+
+    }
+
+}
+
+
+//-----------------------------------------------------------------------------
+
+void Scene7 ()
+
+{
+
+   for (int t = 0; t <= 100; t++)
+
+    {
+
+        drawBackground (TX_WHITE);
+
+        drawMan (375, 338 + t % 10 - 5, 0, 0, 0, 0, 1, TX_GREEN);
+        drawMan (425, 338 - t % 10 + 5, 0, 0, 0, 0, 1, TX_LIGHTCYAN);
+
+        drawUfo (810 - 5.1 * t, 100);
+
+        txSleep (10);
+
+    }
+
+}
+
+//-----------------------------------------------------------------------------
+
+void Scene8 ()
+
+{
+
+    for (int t = 0; t <= 100; t++)
+
+    {
+
+        drawBackground (TX_WHITE);
+
+        drawMan (375, 338 + t % 10 - 5 - 3 * t, 0, 0, 0, 0, 1, TX_GREEN);
+        drawMan (425, 338 - t % 10 + 5 - 3 * t, 0, 0, 0, 0, 1, TX_LIGHTCYAN);
+
+        drawUfo (310, 100);
+
+        txSleep (10);
+
+    }
+
+}
+
+//-----------------------------------------------------------------------------
+
+void Scene9 ()
+
+{
+
+    for (int t = 0; t <= 100; t++)
+
+    {
+
+        drawBackground (TX_WHITE);
+
+        drawUfo (310, 100 - 5 * t);
+
+        txSleep (10);
+
+    }
 
 }
 
@@ -53,7 +302,7 @@ int main()
 void drawMan (int x, int y, int lhx, int lhy, int rhx, int rhy, double scale, COLORREF color)
 {
 
-    txSetColor (color, scale);
+    txSetColor (color, scale * 2);
     txSetFillColor(TX_BLACK);
 
     txLine (x, y, x, y + scale * 40);
@@ -65,131 +314,6 @@ void drawMan (int x, int y, int lhx, int lhy, int rhx, int rhy, double scale, CO
     txLine (x, y + scale * 40, x - scale * 10, y + scale * 40 + scale * 20);
 
     txCircle (x, y - scale * 5, scale * 10);
-
-}
-
-//----------------------------------------------------------------------------
-
-void moveMen (int x00, int y00, double vx0, double vy0,
-              double scale00, double scale10,
-              int time0, COLORREF color0,
-              int x01, int y01, double vx1, double vy1,
-              double scale01, double scale11,
-              int time1, int delay,
-              COLORREF color1,
-              int x02, int y02, double vx2, double vy2,
-              int time2, COLORREF color2,
-              bool wobble, COLORREF bkcolor)
-
-{
-
-    drawMan (x00, y00, 0, 0, 0, 0, scale00, color0);
-    drawMan (x01, y01, 0, 0, 0, 0, scale01, color1);
-
-    double vScale0 = (scale10 - scale00) / time0;
-    double vScale1 = (scale11 - scale01) / time1;
-
-    int x10 = x00;
-    int y10 = y00;
-
-    int x11 = x01;
-    int y11 = y01;
-
-    int x12 = x02;
-    int y12 = x02;
-
-    double scale0 = scale00;
-    double scale1 = scale01;
-
-    int time = time0;
-
-    if (time < time1)
-
-    {
-
-        time = time1;
-
-    }
-
-    if (time < time2)
-
-    {
-
-        time = time2;
-
-    }
-
-
-    for (int t = 0; t <= time; t++)
-
-    {
-
-        drawMan (x10, y10, 0, 0, 0, 0, scale0, color0);
-        drawMan (x11, y11, 0, 0, 0, 0, scale1, color1);
-        drawHouse (x12, y12, color2, bkcolor);
-
-        txSleep (delay);
-
-        Clear (bkcolor);
-        drawBackground (TX_WHITE);
-
-        if (t <= time0)
-
-        {
-
-            x10 = x00 + vx0 * t;
-            y10 = y00 + vy0 * t;
-
-            if (wobble)
-
-            {
-
-                y10 = y10 + t % 10 - 5;
-
-            }
-
-            scale0 = scale00 + vScale0 * t;
-            drawMan (x10, y10, 0, 0, 0, 0, scale0, color0);
-
-        }
-
-        if (t <= time1)
-
-        {
-
-            x11 = x01 + vx1 * t;
-            y11 = y01 + vy1 * t;
-
-            if (wobble)
-
-            {
-
-                y11 = y11 - t % 10 + 5;
-
-            }
-
-            scale1 = scale01 + vScale1 * t;
-            drawMan (x11, y11, 0, 0, 0, 0, scale1, color1);
-
-        }
-
-        if (t <= time2)
-
-        {
-
-            x12 = x02 + vx2 * t;
-            y12 = y02 + vy2 * t;
-
-            drawHouse (x12, y12, color2, bkcolor);
-
-        }
-
-
-    }
-
-    drawMan (x10, y10, 0, 0, 0, 0, scale10, color0);
-    drawMan (x11, y11, 0, 0, 0, 0, scale11, color1);
-    drawHouse (x12, y12, color2, bkcolor);
 
 }
 
@@ -211,6 +335,8 @@ void Clear (COLORREF color)
 void drawBackground (COLORREF color)
 
 {
+
+    Clear (TX_BLACK);
 
     txSetColor (color, 3);
 
@@ -239,47 +365,64 @@ void drawHouse (int x, int y, COLORREF color, COLORREF bkcolor)
 
 }
 
-//----------------------------------------------------------------------------
+//-----------------------------------------------------------------------------
 
-void hi (int delay)
+int Max (int num1, int num2)
 
 {
 
-    int hx = 0;
-    int hy = 0;
-
-    for (int i = 0; i <= 20; i++)
-
+    if (num1 > num2)
     {
 
-        Clear (TX_BLACK);
-
-        drawBackground (TX_WHITE);
-        drawMan (575, 338, 0, 0, -(i * 1.3), (i * 0.7), 1, TX_GREEN);
-        drawMan (615, 338, -(i * 1.3), -(i * 0.7), 0, 0, 1, TX_LIGHTCYAN);
-        drawHouse (635, 400, TX_WHITE, TX_BLACK);
-
-        txSleep (delay);
+        return num1;
 
     }
 
-    txSleep (300);
-
-    for (int i = 20; i >= 0; i--)
+    else
 
     {
 
-        Clear (TX_BLACK);
-
-        drawBackground (TX_WHITE);
-        drawMan (575, 338, 0, 0, -(i * 1.3), (i * 0.7), 1, TX_GREEN);
-        drawMan (615, 338, -(i * 1.3), -(i * 0.7), 0, 0, 1, TX_LIGHTCYAN);
-        drawHouse (635, 400, TX_WHITE, TX_BLACK);
-
-        txSleep (delay);
+        return num2;
 
     }
+
+}
+
+//-----------------------------------------------------------------------------
+
+void drawUfo (int x, int y)
+
+{
+
+    txSetColor (TX_BLACK);
+    txSetFillColor (TX_BLACK);
+
+    txRectangle (x, y + 74, x + 200, y - 200);
+
+    txSetColor (TX_GRAY);
+    txSetFillColor (TX_GRAY);
+
+    txEllipse (x, y + 75, x + 200, y);
+    txEllipse (x + 80, y + 20, x + 120, y - 25);
 
 
 }
 
+void drawHouse (int x, int y, int scale, COLORREF color, COLORREF bkcolor)
+
+{
+
+    txSetFillColor (bkcolor);
+    txSetColor (bkcolor);
+
+    txRectangle (x, y - 110 - scale, x + 100 + scale, y + scale);
+
+    txSetColor (color, 3);
+
+    txLine (x, y, x, y - 75 - scale);
+    txLine (x, y, x + 100 + scale, y);
+    txLine (x + 100 + scale, y - 75 - scale, x + 100 + scale, y);
+    txLine (x, y - 75 - scale, x + 50 + scale / 2, y - 110 - scale - scale / 4);
+    txLine (x + 100 + scale, y - 75 - scale, x + 50 + scale / 2, y - 110 - scale - scale / 4);
+
+}
